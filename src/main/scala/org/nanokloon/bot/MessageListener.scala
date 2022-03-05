@@ -12,9 +12,15 @@ class MessageListener(bot: JDA) extends ListenerAdapter {
     val message: Message = event.getMessage
     if(!message.getAuthor.isBot) {
       message.getContentRaw.toLowerCase() match {
-        case "bot!shutdown" => shutdown(bot)
+        case "bot!shutdown" => shutdown(bot,message)
         case "bot!dumptoken" => message.reply("You tried lol").queue()
-        case "bot!roulette" => roulette(bot, message.getGuild : Guild )
+        case "bot!roulette" => roulette(message.getGuild,message)
+        case "bot!members" => {
+          message.getGuild.pruneMemberCache()
+        message.reply(message.getGuild.getMembers.toArray().mkString("Array(", ", ", ")")).queue()
+        }
+        case "sd" => shutdown(bot,message)
+        case _ => null
       }
 
 
