@@ -15,10 +15,10 @@ object TimeoutRoulette {
     val timeoutList: ListBuffer[Member] = ListBuffer()
 
     for (i <- 1 to memberCount) {
-       timeoutList += server.getMembers.get(r.nextInt(memberCount - 1))
+       timeoutList += server.getMembers.get(r.nextInt(memberCount ))
   }
 
-    val loser: Member = timeoutList(r.nextInt(memberCount-1))
+    val loser: Member = timeoutList(r.nextInt(memberCount))
 
     try {
       loser.timeoutFor(100L, TimeUnit.SECONDS).queue()

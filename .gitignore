@@ -4,3 +4,5 @@ config/config.json
 target/
 
 .bsp/
+
+.idea/
