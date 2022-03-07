@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.entities.{Member, Message}
 import net.dv8tion.jda.internal.utils.PermissionUtil
 object Shutdown {
  def shutdown(jda:JDA , message: Message): Unit ={
-   if(PermissionUtil.checkPermission(message.getAuthor.asInstanceOf[Member], Permission.ADMINISTRATOR)) {
+   if(PermissionUtil.checkPermission(message.getGuild.getMemberById(message.getAuthor.getId), Permission.ADMINISTRATOR)) {
      println("Shutting Down...")
      message.reply("Shutting Down...").queue()
      jda.awaitReady().shutdownNow()
